@@ -1,0 +1,16 @@
+*{
+  margin:0;
+  padding:0;
+}
+.hide{
+  display:none;
+}
+.clear-float:after{
+  content: '';
+  display:block;
+  clear:both;
+}
+
+body{
+  background: yellow url(../assets/images/6.png) no-repeat left top;
+}
