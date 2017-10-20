@@ -2,10 +2,11 @@ var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
   entry: './src/app.js',
   output:{
-    path: path.resolve(__dirname, 'dist/'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[hash].bundle.js',
   },
   module: {
@@ -29,7 +30,7 @@ module.exports = {
         })
     },
     {
-      test: /\.(png)|(jpg)|(gif)$/,
+      test: /\.(png|jpg|gif)$/,
       use: {
         loader: 'url-loader',
         options: {
@@ -41,11 +42,13 @@ module.exports = {
   ]
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
     new ExtractTextPlugin('[hash].css'),
     new webpack.optimize.UglifyJsPlugin()
   ],
-  devtool:'eval-map-source'
+  devtool:'eval-map-source',
+  
 }
