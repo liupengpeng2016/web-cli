@@ -5,10 +5,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
   entry: {
-    main: './src/app.js'
+    main: './src/app.js',
+    vendor: ['./src/vendor.js']
   },
   output: {
-    filename: "[name].bundle.js",
+    filename: "[name].[chunkhash].js",
     path: path.resolve(__dirname, '../dist')
   },
   module: {
@@ -34,18 +35,21 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 8192,
-            outputPath: './dist/static/images'
+            outputPath: './images'
           }
         }
       }
     ]
   },
   plugins: [
-   new CleanWebpackPlugin('[dist]'),
+   new CleanWebpackPlugin(['dist'], {root: path.resolve(__dirname, '../')}),
    new HtmlWebpackPlugin(),
    new ExtractTextPlugin('[hash].css'),
    new webpack.optimize.CommonsChunkPlugin({
-     name: 'common'
+     name: 'vendor'
+   }),
+   new webpack.optimize.CommonsChunkPlugin({
+     name: 'runtime'
    })
   ]
 

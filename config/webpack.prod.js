@@ -3,6 +3,7 @@ var merge = require('webpack-merge');
 var webpack = require('webpack');
 module.exports = merge(common, {
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
   ]
 })

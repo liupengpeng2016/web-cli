@@ -1,3 +1,3 @@
 import './scss/index.scss';
-import {fn_a} from './prient.js';
-fn_a(2)
+import common from './common.js'
+commom(3)
