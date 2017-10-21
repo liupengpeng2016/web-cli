@@ -15,7 +15,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
+        include: /src/,
         use: ExtractTextPlugin.extract({
           fallback:'style-loader',
           use: [
@@ -23,6 +24,13 @@ module.exports = {
               loader: 'css-loader',
               options: {
                 minimize: true,
+                importLoaders: 1,
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                //path: path.resolve(__dirname, './config/postcss.config.js')
               }
             },
             'sass-loader'
@@ -30,12 +38,24 @@ module.exports = {
         })
       },
       {
+        test: /\.js$/,
+        include: /src/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env'],
+            plugins: ['transform-runtime']
+          }
+        }
+      },
+      {
         test: /\.(jpg|png|gif)$/,
+        include: /src/,
         use: {
           loader: 'url-loader',
           options: {
             limit: 8192,
-            outputPath: './images'
+            outputPath: './images/'
           }
         }
       }
@@ -44,7 +64,6 @@ module.exports = {
   plugins: [
    new CleanWebpackPlugin(['dist'], {root: path.resolve(__dirname, '../')}),
    new HtmlWebpackPlugin(),
-   new ExtractTextPlugin('[hash].css'),
    new webpack.optimize.CommonsChunkPlugin({
      name: 'vendor'
    }),
