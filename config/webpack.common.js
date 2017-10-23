@@ -2,11 +2,10 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
   entry: {
     main: './src/app.js',
-    vendor: ['./src/vendor.js']
+    vendor: ['./public/autoAdapt.js']
   },
   output: {
     filename: "[name].[chunkhash].js",
@@ -16,7 +15,7 @@ module.exports = {
     rules: [
       {
         test: /\.(scss|css)$/,
-        include: /src/,
+        exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback:'style-loader',
           use: [
@@ -39,7 +38,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        include: /src/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -50,7 +49,7 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|gif)$/,
-        include: /src/,
+        exclude: /node_modules/,
         use: {
           loader: 'url-loader',
           options: {
@@ -62,8 +61,9 @@ module.exports = {
     ]
   },
   plugins: [
-   new CleanWebpackPlugin(['dist'], {root: path.resolve(__dirname, '../')}),
-   new HtmlWebpackPlugin(),
+   new HtmlWebpackPlugin({
+     template: './public/index.html'
+   }),
    new webpack.optimize.CommonsChunkPlugin({
      name: 'vendor'
    }),
