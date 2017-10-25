@@ -7,13 +7,15 @@ var path = require('path');
 
 module.exports = merge(common, {
   output: {
-    filename: '[name].[chunkhash].js'
+    filename: '[name].[chunkhash].js',
   },
   plugins: [
     new CleanWebpackPlugin(['dist'], {root: path.resolve(__dirname, '../')}),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.HashedModuleIdsPlugin(),
-    new ExtractTextPlugin('main.[chunkhash].css'),
+    new ExtractTextPlugin({
+      filename: 'style.[contenthash].css',
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
     }),

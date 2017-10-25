@@ -9,7 +9,7 @@ module.exports = {
   },
   output: {
     filename: "[name].js",
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, '../dist/static'),
   },
   module: {
     rules: [
@@ -54,7 +54,7 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 8192,
-            outputPath: './images/'
+            outputPath: 'images/'
           }
         }
       }
@@ -62,7 +62,8 @@ module.exports = {
   },
   plugins: [
    new HtmlWebpackPlugin({
-     template: './public/index.html'
+     template: './public/index.html',
+     filename: '../index.html'
    }),
   ]
 }
