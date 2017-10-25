@@ -8,7 +8,7 @@ module.exports = {
     vendor: ['./public/autoAdapt.js']
   },
   output: {
-    filename: "[name].[chunkhash].js",
+    filename: "[name].js",
     path: path.resolve(__dirname, '../dist')
   },
   module: {
@@ -64,12 +64,5 @@ module.exports = {
    new HtmlWebpackPlugin({
      template: './public/index.html'
    }),
-   new webpack.optimize.CommonsChunkPlugin({
-     name: 'vendor'
-   }),
-   new webpack.optimize.CommonsChunkPlugin({
-     name: 'runtime'
-   })
   ]
-
 }

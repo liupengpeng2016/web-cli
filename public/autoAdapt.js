@@ -6,7 +6,5 @@ export default function(){
 
   document.querySelector('body').style.fontSize = 'medium';
   autoAdapt();
-
   window.addEventListener('resize', autoAdapt);
-
 }
