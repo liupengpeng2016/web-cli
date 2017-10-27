@@ -13,6 +13,33 @@ module.exports = merge(common, {
   output: {
     filename: '[name].[chunkhash].js',
   },
+  module: {
+    rules: [
+      {
+        test: /\.(scss|css)$/,
+        exclude: /node_modules/,
+        use: ExtractTextPlugin.extract({
+          fallback:'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+                importLoaders: 1,
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                //path: path.resolve(__dirname, './config/postcss.config.js')
+              }
+            },
+            'sass-loader'
+          ]
+        })
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',

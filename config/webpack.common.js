@@ -13,29 +13,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
-        exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback:'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                minimize: true,
-                importLoaders: 1,
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                //path: path.resolve(__dirname, './config/postcss.config.js')
-              }
-            },
-            'sass-loader'
-          ]
-        })
-      },
-      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
@@ -59,10 +36,4 @@ module.exports = {
       }
     ]
   },
-  // plugins: [
-  //  new HtmlWebpackPlugin({
-  //    template: './public/index.html',
-  //    filename: '../index.html'
-  //  }),
-  // ]
 }
