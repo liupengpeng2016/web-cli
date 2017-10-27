@@ -12,6 +12,7 @@ module.exports = merge(common, {
   },
   output: {
     filename: '[name].[chunkhash].js',
+    path: path.resolve(__dirname, '../dist/static'),
   },
   module: {
     rules: [

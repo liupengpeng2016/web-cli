@@ -17,10 +17,10 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['env'],
-            plugins: ['transform-runtime']
-          }
+          // options: {
+          //   presets: ['env'],
+          //   plugins: ['transform-runtime']
+          // }
         }
       },
       {
