@@ -8,20 +8,14 @@ module.exports = {
   },
   output: {
     filename: "[name].js",
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist/static'),
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          // options: {
-          //   presets: ['env'],
-          //   plugins: ['transform-runtime']
-          // }
-        }
+        use: 'babel-loader',
       },
       {
         test: /\.(jpg|png|gif)$/,
@@ -30,7 +24,7 @@ module.exports = {
           loader: 'url-loader',
           options: {
             limit: 8192,
-            outputPath: 'images/'
+            outputPath: 'images/',
           }
         }
       }

@@ -3,3 +3,4 @@ import autoAdapt from '../public/autoAdapt.js';//view-port
 autoAdapt()
 
 import './scss/index.scss'
+console.log(5)
