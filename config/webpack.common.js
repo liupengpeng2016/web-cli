@@ -4,12 +4,11 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
-    main: './src/app.js',
-    vendor: ['./public/autoAdapt.js']
+    main: './src/index.js',
   },
   output: {
     filename: "[name].js",
-    path: path.resolve(__dirname, '../dist/static'),
+    path: path.resolve(__dirname, '../dist'),
   },
   module: {
     rules: [
@@ -60,10 +59,10 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-   new HtmlWebpackPlugin({
-     template: './public/index.html',
-     filename: '../index.html'
-   }),
-  ]
+  // plugins: [
+  //  new HtmlWebpackPlugin({
+  //    template: './public/index.html',
+  //    filename: '../index.html'
+  //  }),
+  // ]
 }
